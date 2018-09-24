@@ -1,0 +1,32 @@
+<div class="row" style="padding: 7%;">
+  <h5>Liste des devis pour <b>{{incident.description}}</b> </h5>
+  <div class="col s12">
+    <table *ngIf="incident.devis.length > 0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>date</th>
+          <th>Description</th>
+          <th>Nom du technicien</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let devi of incident.devis; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{devi.date}}</td>
+          <td>{{devi.description}}</td>
+          <td>
+            {{devi.technician.person.firstName}} {{devi.technician.person.name}}
+          </td>
+          <td>
+            {{devi.technician.person.phone}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div  *ngIf="incident.devis.length <= 0">
+     <h5 class="red-text"> Pas encore de devis</h5>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="row">
+  <br>
+  <form class="col offset-s3 s6" (submit)="save()">
+    <h4 class="align-center s12">Nouvelle de demande de devis</h4>
+    <br>
+    <div class="row">
+      <md-select placeholder="Type de traveaux" name="type" class="col s12" [(ngModel)]="incident.id_type">
+        <md-option *ngFor="let food of categories" [value]="food.id">
+          {{ food.libelle }}
+        </md-option>
+      </md-select>  
+    </div> 
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="libelle" type="text" minlength="100" #description="ngModel" name="description" class="materialize-textarea" [(ngModel)]="incident.description"
+          required cols="30" rows="10"></textarea>
+        <label for="libelle">Description détaillé des traveaux à effectuer</label>
+        <span *ngIf="description.errors && (description.dirty || description.touched)" class="red-text">
+          <span [hidden]="!description.errors.required">
+              Veuillez entrer une description.
+          </span>
+          <span [hidden]="!description.errors.minlength">
+              La description est trop courte.
+         </span>
+        </span>
+      </div> 
+    </div>
+    <div class="row">
+      <div class="col">
+        <button type="submit" class="waves-effect waves-light btn-large red">Demander un devis</button>
+      </div><br>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,98 @@
+<div class="row">
+    <br>
+    <form class="col offset-s3 s5" [formGroup]="rForm" (submit)="save(rForm.value)">
+        <h4>Créer un compte</h4>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="name" name="name" type="text" formControlName="name" required [(ngModel)]="newUser.name" class="validate">
+                <label for="name">Nom</label>
+                <span *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched" class="red-text">
+                    <span [hidden]="rForm.controls['name'].valid">
+                            Veuillez entrer votre nom.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.name}}
+                </span>
+            </div>
+            <div class="input-field col s6">
+                <input id="firstName" name="firstName" formControlName="firstName" required type="text" [(ngModel)]="newUser.firstName" class="validate">
+                <label for="firstName">Prenom</label>
+                <span *ngIf="!rForm.controls['firstName'].valid && rForm.controls['firstName'].touched" class="red-text">
+                    <span [hidden]="rForm.controls['firstName'].valid">
+                            Veuillez entrer votre prenom.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.firstName}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" formControlName="email" name="email" required type="email" [(ngModel)]="newUser.email" class="validate">
+                <label for="email">Email</label>
+                <span class="red-text" *ngIf="!rForm.controls['email'].valid && rForm.controls['email'].touched">
+                <span [hidden]="rForm.controls['email'].valid">
+                    Veuillez entrer une adresse email valide.
+                </span>
+                </span>
+                <span class="red-text">
+                    {{errors.login}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" name="passsword" formControlName="password" type="password" [(ngModel)]="newUser.password" required
+                    minlength="7" class="validate">
+                <label for="password">Mot de passe</label>
+                <span class="red-text" *ngIf="!rForm.controls['password'].valid && rForm.controls['password'].touched"> 
+                <span [hidden]="rForm.controls['password'].valid">
+                       Le mot de passe doit contenir au moins 7 caractères
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.password}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="phone" formControlName="phone" pattern=".*(^(6[5-9][0-9]{7})|(2[2-4][0-9]{7})$).*" name="phone" [(ngModel)]="newUser.phone"
+                    required type="text" class="validate">
+                <label for="phone">Tel</label>
+                <span *ngIf="!rForm.controls['phone'].valid && rForm.controls['phone'].touched" class="red-text">
+                    <span [hidden]="rForm.controls['phone'].valid">
+                           Numero de téléphone invalide.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.phone}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="cni" name="cni" formControlName="cni" required type="text" [(ngModel)]="newUser.cni" class="validate">
+                <label for="cni">CNI</label>
+                <span *ngIf="!rForm.controls['cni'].valid && rForm.controls['cni'].touched" class="red-text">
+                    <span [hidden]="rForm.controls['cni'].valid">
+                            Veuillez entrer votre numero de carte d'identité.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.cni}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" [disabled]="!rForm.valid" class="waves-effect waves-light btn-large">Créer mon compte</button>
+            </div>
+            <div class="col">
+                Vous avez déjà un compte ? <a routerLink="/login">connecter vous</a>
+            </div>
+        </div>
+    </form>
+</div>

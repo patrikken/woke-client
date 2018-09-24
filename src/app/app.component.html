@@ -1,0 +1,86 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<nav>
+    <div class="nav-wrapper">
+        <a routerLink="/" class="brand-logo">Woke.com</a>
+        <a href="#" materialize="sideNav" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+       
+       
+        <ul *ngIf="!isLogged" class="right hide-on-med-and-down">
+            <li><a routerLink="/pro/register">Devenir Pro</a></li>
+            <li><a href="">Demande de devis</a></li>
+            <li><a routerLink="/login">Connexion</a></li>
+            <li><a routerLink="/create-account">Créer un compte</a></li>
+        </ul>
+        <ul *ngIf="user.role == 'ROLE_PERSON' " class="right hide-on-med-and-down">
+            <li><a routerLink="/new-devis">Demande de devis</a></li>
+            <li><a routerLink="/list-incident">Historique des incidents</a></li>
+            <li><a><i class="material-icons left">person</i> {{user.person.first_name}} {{user.person.name}}</a></li>
+            <li><a (click)="logout()">deconnexion</a></li>
+        </ul>
+
+        <ul *ngIf="user.role == 'ROLE_ADMIN' " class="right hide-on-med-and-down">
+            <li><a>Welcome Admin</a></li>
+            <li><a routerLink="/admin/category">Gestion des specialités</a></li>  
+            <li><a (click)="logout()">deconnexion</a></li>
+        </ul>
+
+        <ul *ngIf="user.role == 'ROLE_PRO' " class="right hide-on-med-and-down">
+            <li><a>Liste des incidents</a></li>
+            <li><a routerLink="/list-incident">Historique des devis</a></li>
+            <li><a><i class="material-icons left">person_pin</i> {{user.person.first_name}} {{user.person.name}}</a></li>
+            <li><a (click)="logout()">deconnexion</a></li>
+        </ul>
+ 
+
+
+        <ul *ngIf="user.role == 'ROLE_PERSON' " class="side-nav" #right id="mobile-demo">
+            <li><a routerLink="/new-devis">Demande de devis</a></li>
+            <li><a routerLink="/list-incident">Historique des incidents</a></li>
+            <li><a><i class="material-icons">person_pin</i> {{user.person.first_name}} {{user.person.name}}</a></li>
+            <li><a (click)="logout()">deconnexion</a></li>
+        </ul>
+        <ul *ngIf="user.role == 'ROLE_PRO' " class="side-nav" #right id="mobile-demo">
+            <li><a>Liste des incidents</a></li>
+            <li><a>Historique des idevis</a></li>
+            <li><a>{{user.person.first_name}} {{user.person.name}}</a></li>
+            <li><a (click)="logout()">deconnexion</a></li>
+        </ul>
+
+        <ul *ngIf="!isLogged" class="side-nav" #right id="mobile-demo">
+            <li><a routerLink="/pro/register">Devenir Pro</a></li>
+            <li><a>Demande de devis</a></li>
+            <li><a routerLink="/login">Connexion</a></li>
+            <li><a routerLink="/create-account">Créer un compte</a></li>
+        </ul>
+    </div>
+</nav>
+<main>
+    <router-outlet></router-outlet>
+</main>
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Woke.com</h5>
+                <p class="grey-text text-lighten-4">
+                    Trouver un professionnel pour vos traveaux, en quelques cliques
+                </p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Accès direct</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" routerLink="/pro/register">Devenir Pro</a></li>
+                    <li><a class="grey-text text-lighten-3">Demande de devis</a></li>
+                    <li><a class="grey-text text-lighten-3" routerLink="/login">Connexion</a></li>
+                    <li><a class="grey-text text-lighten-3" routerLink="/create-account">Créer un compte</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Tous droits réservés
+            <a class="grey-text text-lighten-4 right" href="#!">woke.com</a>
+        </div>
+    </div>
+</footer>

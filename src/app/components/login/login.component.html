@@ -1,0 +1,44 @@
+<div class="row">
+    <br>
+    <form class="col card offset-s4 s4" (submit)="login()">
+        <h4 class="align-center s12">Connexion</h4>
+
+        <div *ngIf="invalidCreds" class="card-panel">
+            <span class="red-text text-darken-2">Login ou mot de passe incorrect</span>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" #email="ngModel" name="email" required type="email" [(ngModel)]="param.login" class="validate">
+                <label for="email">Email</label>
+                <span *ngIf="email.errors && (email.dirty || email.touched)" class="red-text">
+                  <span [hidden]="!email.errors.required">
+                          Veuillez entrer une adresse email.
+                  </span>
+                <span [hidden]="!email.errors.pattern">
+                      Adresse email valide.
+              </span>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" name="passsword" type="password" #password="ngModel" [(ngModel)]="param.password" required class="validate">
+                <label for="password">Mot de passe</label>
+                <span *ngIf="password.errors && (password.dirty || password.touched)" class="red-text">
+                  <span [hidden]="!password.errors.required">
+                          Le mot de passe est obligatoire!
+                  </span>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="waves-effect waves-light btn-large red">Se connecter</button>
+            </div><br>
+            <div class="col">
+                Vous n'avez de compte ? <a routerLink="/create-account">Créer un compte client</a> ou <a routerLink="/pro/register">Créer un compte professionnel</a>
+            </div>
+        </div>
+    </form>
+</div>

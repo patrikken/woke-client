@@ -1,0 +1,65 @@
+<div class="row" style="padding: 7%;">
+    <h6 class="col s12">Gestion des spécialités de <b>{{speciality_type.libelle}}</b> </h6> <br>
+    <div class="col s3">
+        <admin-root></admin-root>
+    </div>
+    <div class="col s9">
+        <a class="waves-effect waves-light btn modal-trigger" (click)="add()">Ajouter une spécialité</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Descripion</th>
+                    <th>options</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let speciality of specialities; let i = index">
+                    <td>{{speciality.libelle}}</td>
+                    <td>{{speciality.description}}</td>
+                    <td>
+                        <a data-tooltip="Modifier" (click)="edit(i)" data-delay="50" materialize="tooltip" class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">create</i></a>
+                        <a data-tooltip="Suprimer" (click)="delete(speciality.id)" data-delay="50" materialize="tooltip" class="btn-floating btn-small tooltipped waves-effect waves-light red"><i class="material-icons">clear</i></a>
+                    </td>
+                </tr>
+            </tbody>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal " materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+                <div class="modal-content">
+                    <h5>{{edited ? "Modifier la categorie" : "Ajouter une categorie"}}</h5>
+
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="code" #code="ngModel"  type="text" name="code" [(ngModel)]="new.libelle" class="validate" required>
+                                    <label for="code">libelle</label>
+                                    <span *ngIf="code.errors && (code.dirty || code.touched)" class="red-text">
+                                            <span [hidden]="!code.errors.required">
+                                                    le libelle est obligatoire!
+                                            </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="libelle" type="text" name="libelle" class="materialize-textarea" [(ngModel)]="new.description" required cols="30"
+                                        rows="10"></textarea>
+                                    <label for="libelle">description</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-footer">
+                        <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Annuler</a>
+                        <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="sendtoserver()">{{edited ? "Modifier" : "Enregistrer"}}</a>
+                    </div>
+                </div>
+            </div>
+        </table>
+    </div>
+</div>

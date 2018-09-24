@@ -1,0 +1,61 @@
+<div class="row" style="padding: 7%;">
+    <h5>Gestion des catégories</h5>
+    <div class="col s3">
+         <admin-root></admin-root>
+    </div>
+    <div class="col s9">
+        <a class="waves-effect waves-light btn modal-trigger" (click)="openModal()">Ajouter une catégorie</a>
+        <table>
+            <thead>
+                <tr> 
+                    <th>Code</th>
+                    <th>Libelle</th>
+                    <th>options</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let category of categories"> 
+                    <td>{{category.code}}</td>
+                    <td>{{category.libelle}}</td>
+                    <td>
+                        <a data-tooltip="Modifier" data-delay="50" materialize="tooltip" class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">create</i></a>
+                        <a data-tooltip="Suprimer" (click)="deleteCategories(category.id)" data-delay="50" materialize="tooltip" class="btn-floating btn-small tooltipped waves-effect waves-light red"><i class="material-icons">clear</i></a>
+                        <a data-tooltip="Gérer les spécialités" routerLink="/admin/speciality/{{category.id}}" data-delay="50" materialize="tooltip" class="btn-floating btn-small waves-effect waves-light orange"><i class="material-icons">list</i></a>
+                    </td>
+                </tr>
+            </tbody>
+
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal " materialize="modal" [materializeParams]="[{dismissible: false}]" [materializeActions]="modalActions">
+                <div class="modal-content">
+                    <h5>Ajouter une categorie</h5>
+
+                    <div class="row">
+                        <form class="col s12">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="code" type="text" name="code" [(ngModel)]="newCategory.code" class="validate" required>
+                                    <label for="code">Code</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input id="libelle" type="text" name="libelle" class="validate" [(ngModel)]="newCategory.libelle" required>
+                                    <label for="libelle">Libelle</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="modal-footer">
+                        <a class="waves-effect waves-green btn-flat" (click)="closeModal()">Annuler</a>
+                        <a class="modal-action modal-close waves-effect waves-green btn-flat" (click)="addCategory()">Enregistrer</a>
+                    </div>
+                </div>
+            </div>
+
+        </table>
+    </div>
+</div>

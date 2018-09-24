@@ -1,0 +1,121 @@
+<div class="row">
+    <br>
+    <form class="col offset-s3 s5" (submit)="save()">
+        <h4>Créer un compte professionnel</h4>
+        <div class="row">
+            <div class="input-field col s6">
+                <input id="name" name="name" type="text" required #name="ngModel" [(ngModel)]="newUser.name" class="validate">
+                <label for="name">Nom</label>
+                <span *ngIf="name.errors && (name.dirty || name.touched)" class="red-text">
+                    <span [hidden]="!name.errors.required">
+                            Veuillez entrer votre nom.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.name}}
+                </span>
+            </div>
+            <div class="input-field col s6">
+                <input id="firstName" name="firstName" required #firstName="ngModel" type="text" [(ngModel)]="newUser.firstName" class="validate">
+                <label for="firstName">Prenom</label>
+                <span *ngIf="firstName.errors && (firstName.dirty || firstName.touched)" class="red-text">
+                    <span [hidden]="!firstName.errors.required">
+                            Veuillez entrer votre prenom.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.firstName}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="email" #email="ngModel" name="email" required type="email" [(ngModel)]="newUser.email" class="validate">
+                <label for="email">Email</label>
+                <span *ngIf="email.errors && (email.dirty || email.touched)" class="red-text">
+                    <span [hidden]="!email.errors.required">
+                            Veuillez entrer une adresse email.
+                    </span>
+                <span [hidden]="!email.errors.pattern">
+                        Adresse email valide.
+                </span>
+                </span>
+                <span class="red-text">
+                    {{errors.login}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="password" name="passsword" type="password" #password="ngModel" [(ngModel)]="newUser.password" required minlength="7"
+                    class="validate">
+                <label for="password">Mot de passe</label>
+                <span *ngIf="password.errors && (password.dirty || password.touched)" class="red-text">
+                    <span [hidden]="!password.errors.required">
+                            Le mot de passe est obligatoire!
+                    </span>
+                <span [hidden]="!password.errors.minlength">
+                       Le mot de passe doit contenir au moins 5 caractères
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.password}}
+                </span>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="phone" pattern=".*(^(6[5-9][0-9]{7})|(2[2-4][0-9]{7})$).*" name="phone" #phone="ngModel" [(ngModel)]="newUser.phone"
+                    required type="text" class="validate">
+                <label for="phone">Tel</label>
+                <span *ngIf="phone.errors && (phone.dirty || phone.touched)" class="red-text">
+                    <span [hidden]="!phone.errors.required">
+                            Veuillez entrer votre numero de téléphone.
+                    </span>
+                <span [hidden]="!phone.errors.pattern">
+                        Numero de téléphone invalide.
+                </span>
+                </span>
+                <span class="red-text">
+                    {{errors.phone}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="cni" name="cni" #cni="ngModel" required type="text" [(ngModel)]="newUser.cni" class="validate">
+                <label for="cni">CNI</label>
+                <span *ngIf="cni.errors && (cni.dirty || cni.touched)" class="red-text">
+                    <span [hidden]="!cni.errors.required">
+                            Veuillez entrer votre numero de carte d'identité.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.cni}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input [(ngModel)]="newUser.businessCard" required #businessCard="ngModel" id="businessCard" name="businessCard" type="text" class="validate">
+                <label for="businessCard">Carte pro</label>
+                <span *ngIf="businessCard.errors && (businessCard.dirty || businessCard.touched)" class="red-text">
+                    <span [hidden]="!businessCard.errors.required">
+                            Veuillez entrer votre numero de carte professionnel.
+                    </span>
+                </span>
+                <span class="red-text">
+                    {{errors.businessCard}}
+                </span>
+            </div> 
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="waves-effect waves-light btn-large">Créer mon compte</button>
+            </div>
+            <div class="col">
+                Vous avez déjà un compte ? <a routerLink="/login">connecter vous</a> 
+            </div>
+        </div>
+    </form>
+</div> 
